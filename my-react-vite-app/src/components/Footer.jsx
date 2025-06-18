@@ -9,7 +9,7 @@ const Footer = () => {
                 <div>
                     <div className="flex items-center mb-4">
                         <i className="fas fa-hand-holding-heart text-2xl text-rose-400 mr-2"></i>
-                        <h3 className="text-xl font-bold">Nailz<span class="text-white">by.rose
+                        <h3 className="text-xl font-bold">Nailz<span className="text-white">by.rose
                           </span></h3>
                     </div>
                     <p className="text-gray-400">Premium nail services with a focus on hygiene, quality, and artistic excellence.</p>
@@ -27,8 +27,8 @@ const Footer = () => {
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Services</h4>
-                    <ul class="space-y-2">
+                    <h4 className="text-lg font-bold mb-4">Services</h4>
+                    <ul className="space-y-2">
                         <li><a href="#" className="text-gray-400 hover:text-rose-400 transition">Manicures</a></li>
                         <li><a href="#" className="text-gray-400 hover:text-rose-400 transition">Pedicures</a></li>
                         <li><a href="#" className="text-gray-400 hover:text-rose-400 transition">Gel Extensions</a></li>

@@ -12,15 +12,15 @@ const TopDeals = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* <!-- Deal 1 --> */}
-                <TopDealCard name="Valentine's Special"description="Romantic nail designs with heart patterns and red/pink color schemes."newprice={45.50} oldprice={65} background="bg-pink-600" percent={30} grad1="from-pink-400" grad2 = "to-pink-600"/>
+                <TopDealCard name="Valentine's Special"description="Romantic nail designs with heart patterns and red/pink color schemes."newprice={45.50} oldprice={65} background="bg-pink-600" percent={30} grad1="from-pink-400" grad2 = "to-pink-600" img="../../asset/christmas/S8.jpeg"/>
                 
                 
                 {/* <!-- Deal 2 --> */}
-                <TopDealCard name="Summer Glow"description="Bright summer colors with tropical designs and UV protection top coat."newprice={44} oldprice={55} background="bg-purple-600" percent={20} grad1="from-purple-400" grad2 = "to-purple-600"/>
+                <TopDealCard name="Summer Glow"description="Bright summer colors with tropical designs and UV protection top coat."newprice={44} oldprice={55} background="bg-purple-600" percent={20} grad1="from-purple-400" grad2 = "to-purple-600" img="../../asset/summer/Su4.jpeg"/>
 
 
                {/* Deal 3 */}
-                <TopDealCard name="Winter Wonderland"description="Sparkling winter designs with snowflakes and icy blue/silver colors."newprice={45} oldprice={60} background="bg-blue-600" percent={25} grad1="from-blue-400" grad2 = "to-blue-600"/>
+                <TopDealCard name="Winter Wonderland"description="Sparkling winter designs with snowflakes and icy blue/silver colors."newprice={45} oldprice={60} background="bg-blue-600" percent={25} grad1="from-blue-400" grad2 = "to-blue-600" img="../../asset/artist simple/A16.jpeg"/>
 
             </div>
         </div>

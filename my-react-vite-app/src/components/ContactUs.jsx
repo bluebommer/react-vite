@@ -1,6 +1,37 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import emailjs from 'emailjs-com'
 const ContactUs = () => {
+    const[formData,setFormData] = useState({
+        name:"",
+        email:"",   
+        phone: "",
+        message:""
+    });
+    const handleChange = (e) =>{
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log('Sending:',formData);
+        emailjs.send(
+            "service_vrt1ur8", //serviceid
+            'template_vd9lkds',//templateid
+            formData,
+            'XvE1xDdcbNyAO9s9K'// public key
+
+        )
+        .then((result) =>{
+            alert('Message sent successfully!');
+            setFormData({ name:"",email:"",   phone: "",message:""});
+        })
+        .catch((error) =>{
+            alert('Message failed to send!   ');
+            console.error(error);
+        });
+    };
   return (
     <div>
       <section id="contact" className="py-16 bg-white">
@@ -65,25 +96,25 @@ const ContactUs = () => {
                     
                     <div className="md:w-1/2 p-12">
                         <h3 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-4">
-                                <label for="name" className="block text-gray-700 mb-2">Name</label>
-                                <input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none"/>
+                                <label  className="block text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none" name="name" value={formData.name} onChange={handleChange} />
                             </div>
                             
                             <div className="mb-4">
-                                <label for="email" className="block text-gray-700 mb-2">Email</label>
-                                <input type="email" id="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none"/>
+                                <label  className="block text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none" name="email" value={formData.email} onChange={handleChange}/>
                             </div>
                             
-                            <div className="mb-4">
-                                <label for="phone" className="block text-gray-700 mb-2">Phone</label>
-                                <input type="tel" id="phone" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none"/>
+                            <div className="mb-4" >
+                                <label  className="block text-gray-700 mb-2">Phone</label>
+                                <input type="tel" id="phone" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none" name="phone" value={formData.phone} onChange={handleChange}/>
                             </div>
                             
                             <div className="mb-6">
-                                <label for="message" className="block text-gray-700 mb-2">Message</label>
-                                <textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none"></textarea>
+                                <label  className="block text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-rose-500 focus:outline-none" name="message" value={formData.message} onChange={handleChange}></textarea>
                             </div>
                             
                             <button type="submit" className="w-full bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-full font-medium transition">
