@@ -11,7 +11,7 @@ const TopDealCard = ({name,description,newprice,oldprice,percent,background,grad
                         </i>
                     </div>
                     <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-800 mb-2  mt-6" >{name}</h3>
+                        <h3 className="text-xl font-bold text-gray-800 mb-2  mt-12" >{name}</h3>
                         {/* <p className="text-gray-600 mb-4">{description}</p> */}
                         <div className="flex justify-between items-center mt-16">
                             <div>
