@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCart } from '../context/CartSystem';
+import { useCart } from '../Context/CartContex';
 
 const AddToCartButton = ({ product, className = "", children, ...props }) => {
   const { addItem } = useCart();

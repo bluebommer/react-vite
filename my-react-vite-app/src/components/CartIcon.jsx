@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '../context/CartSystem';
+import { useCart } from '../Context/CartSystem';
 
 const CartIcon = ({ className = "" }) => {
   const { toggleCart, getTotalItems } = useCart();
