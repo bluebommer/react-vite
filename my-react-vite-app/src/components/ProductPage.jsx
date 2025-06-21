@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import AddToCartButton from './AddToCartButton'; // Adjust path as needed
 
 const ProductPage = () => {
   const { slug } = useParams();
@@ -7,6 +8,7 @@ const ProductPage = () => {
   // Product database - you can move this to a separate file or fetch from an API
   const products = {
     'valentines-special': {
+      id: 'valentines-special', // Added unique ID for cart
       name: "Valentine's Special",
       slug: "valentines-special", 
       price: 45.5,
@@ -37,6 +39,7 @@ const ProductPage = () => {
       ]
     },
     'summer-glow': {
+      id: 'summer-glow', // Added unique ID for cart
       name: "Summer Glow",
       slug: "summer-glow",
       price: 44.0,
@@ -67,6 +70,7 @@ const ProductPage = () => {
       ]
     },
     'winter-wonderland': {
+      id: 'winter-wonderland', // Added unique ID for cart
       name: "Winter Wonderland",
       slug: "winter-wonderland",
       price: 45.0,
@@ -98,6 +102,7 @@ const ProductPage = () => {
       ]
     },
     'classic-red': {
+      id: 'classic-red', // Added unique ID for cart
       name: "Classic Red",
       slug: "classic-red", 
       price: 39.0,
@@ -141,6 +146,14 @@ const ProductPage = () => {
       </div>
     );
   }
+
+  // Prepare product object for cart (only the necessary fields)
+  const cartProduct = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.images[0] // First image as the cart thumbnail
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -187,16 +200,22 @@ const ProductPage = () => {
             {product.stock ? 'In Stock' : 'Out of Stock'}
           </p>
 
-          <button
-            disabled={!product.stock}
-            className={`px-6 py-3 text-white rounded-lg shadow ${
-              product.stock
-                ? 'bg-pink-600 hover:bg-pink-700'
-                : 'bg-gray-400 cursor-not-allowed'
-            }`}
-          >
-            Add to Cart
-          </button>
+          {/* Updated Add to Cart Button */}
+          {product.stock ? (
+            <AddToCartButton 
+              product={cartProduct}
+              className="px-6 py-3 text-white rounded-lg shadow text-lg font-semibold"
+            >
+              Add to Cart - ${product.price.toFixed(2)}
+            </AddToCartButton>
+          ) : (
+            <button
+              disabled
+              className="px-6 py-3 text-white rounded-lg shadow bg-gray-400 cursor-not-allowed text-lg font-semibold"
+            >
+              Out of Stock
+            </button>
+          )}
         </div>
       </div>
 
@@ -214,25 +233,42 @@ const ProductPage = () => {
         </div>
       </div>
 
-      
-     {/* Related Products */}
-<div className="mt-16">
-  <h2 className="text-2xl font-semibold mb-6 text-gray-800">You may also like</h2>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {Object.entries(products)
-      .filter(([key]) => key !== slug) // Exclude current product
-      .slice(0, 3) // Show only 3 related products
-      .map(([key, relatedProduct]) => (
-        <Link to={`/product/${relatedProduct.slug}`} key={key}>
-          <div className="bg-white shadow rounded p-4 hover:shadow-lg transition-shadow cursor-pointer">
-            <img src={relatedProduct.images[0]} alt={relatedProduct.name} className="rounded h-40 w-full object-cover mb-4" />
-            <h3 className="font-bold text-lg">{relatedProduct.name}</h3>
-            <p className="text-pink-600 font-semibold">${relatedProduct.price.toFixed(2)}</p>
-          </div>
-        </Link>
-      ))}
-  </div>
-</div>
+      {/* Related Products */}
+      <div className="mt-16">
+        <h2 className="text-2xl font-semibold mb-6 text-gray-800">You may also like</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {Object.entries(products)
+            .filter(([key]) => key !== slug) // Exclude current product
+            .slice(0, 3) // Show only 3 related products
+            .map(([key, relatedProduct]) => (
+              <div key={key} className="bg-white shadow rounded p-4 hover:shadow-lg transition-shadow">
+                <Link to={`/product/${relatedProduct.slug}`}>
+                  <img 
+                    src={relatedProduct.images[0]} 
+                    alt={relatedProduct.name} 
+                    className="rounded h-40 w-full object-cover mb-4 cursor-pointer" 
+                  />
+                  <h3 className="font-bold text-lg cursor-pointer hover:text-pink-600 transition-colors">
+                    {relatedProduct.name}
+                  </h3>
+                  <p className="text-pink-600 font-semibold mb-3">${relatedProduct.price.toFixed(2)}</p>
+                </Link>
+                {/* Add to Cart button for related products */}
+                <AddToCartButton 
+                  product={{
+                    id: relatedProduct.id,
+                    name: relatedProduct.name,
+                    price: relatedProduct.price,
+                    image: relatedProduct.images[0]
+                  }}
+                  className="w-full py-2 px-4 text-sm"
+                >
+                  Quick Add
+                </AddToCartButton>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

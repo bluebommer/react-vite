@@ -6,11 +6,13 @@ import Home from './components/Home';
 import Product from './components/Product';
 import Checkout from './components/Checkout';
 import NavBar from './components/NavBar';
+import { CartProvider } from './Context/CartContex';
 // import CollectionsPage from './components/CollectionsPage';
 
 function App() {
   return (
-    <>
+    <CartProvider>
+       <>
     
      <NavBar/>
       <Routes>
@@ -20,6 +22,8 @@ function App() {
      
     </Routes>
     </>
+    </CartProvider>
+   
   
   
   );
