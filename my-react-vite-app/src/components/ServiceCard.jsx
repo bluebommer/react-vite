@@ -1,26 +1,92 @@
+// import React from 'react'
 import React from 'react'
-
-const ServiceCard = ({name,description,price,i,img}) => {
+const ServiceCard = () => {
+  const services = [
+  {
+    name: "Season Collection",
+    description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
+    price: 40,
+    img: "../../asset/christmas/S2.jpeg",
+    i:"fas fa-tooth text-6xl text-purple-500",
+    collectionName: "season" // This should match your folder name
+  },
+  {
+    name: "Stylish", 
+    description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
+    price: 35,
+    img: "../../asset/stylish/St1.jpeg",
+    i:"fas fa-tooth text-6xl text-purple-500",
+    collectionName: "minimalist" // This should match your folder name
+  },
+  {
+    name: "Cross designs",
+    description: "Long-lasting nail extensions with a natural look using high-quality gel products.", 
+    price: 60,
+    img: "../../asset/crosses/C1.jpeg",
+    i:"fas fa-gem text-6xl text-blue-500",
+    collectionName: "valentines" // This should match your folder name
+  },
+  {
+    name: "Pink designs",
+    description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
+    price: 50,
+    img: "../../asset/pink/P1.jpeg",
+    i:"fas fa-magic text-6xl text-yellow-500",
+    collectionName: "valentines" // This should match your folder name
+  },
+    {
+    name: "Summer",
+    description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
+    price: 40,
+    img: "../../asset/summer/Su1.jpeg",
+    i:"fas fa-leaf text-6xl text-green-500",
+    collectionName: "valentines" // This should match your folder name
+  },
+   {
+    name: "Spring",
+    description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
+    price: 75,
+    img: "../../asset/spring/Sp1.jpeg",
+    i:"fas fa-heart text-6xl text-red-500",
+    collectionName: "valentines" // This should match your folder name
+  },
+   {
+    name: "MInimal",
+    description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
+    price: 75,
+    img: "../../asset/artist simple/1.jpeg",
+    i:"fas fa-heart text-6xl text-red-500",
+    collectionName: "valentines" // This should match your folder name
+  }
+  
+];
+ 
   return (
-    <div>
-      <div className="service-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div className="h-48 bg-pink-100 flex items-center justify-center">
-                        <i className={`${i}`}></i>
-                          <img src={img} alt="" />
-                    </div>
-                    <div className="p-8 bg-gray-50 z-2 ">
-                        <h3 className="text-xl font-bold text-gray-900 mt-14 mb-32">{name}</h3>
-                        {/* <p className="text-gray-600 mb-4">{description}</p> */}
-                        <div className="flex justify-between items-center  ">
-                            <span className="text-pink-600 font-bold">From ${price}</span>
-                            <a href="#" className="text-pink-600 hover:text-pink-800 font-medium">
-                              <button className='bg-pink-600 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-pink-700 transition'>
-                                View More
-                              </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((product, index) =>(
+        <div className="service-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300" key={index}>
+        <div className="h-48 bg-pink-100 flex items-center justify-center">
+          <i className={`${product.i}`}></i>
+          <img src={product.img} alt="" />
+        </div>
+        <div className="p-8 bg-gray-50 z-2 ">
+          <h3 className="text-xl font-bold text-gray-900 mt-14 mb-32">{product.name}</h3>
+          {/* <p className="text-gray-600 mb-4">{description}</p> */}
+          <div className="flex justify-between items-center  ">
+            <span className="text-pink-600 font-bold">From ${product.price}</span>
+           
+            <button 
+              // onClick={handleViewMore}
+              className='bg-pink-600 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-pink-700 transition'
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+      ))
+
+      }
     </div>
   )
 }
