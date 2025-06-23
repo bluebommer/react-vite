@@ -132,7 +132,224 @@ const ProductPage = () => {
           comment: 'Great quality red polish. Very professional looking.'
         }
       ]
-    }
+    },
+    'season-collection': {
+      id: 'season-collection', // Added unique ID for cart
+      name: "Season Collectionl",
+      slug: "season-collection", 
+      price: 45.5,
+      oldPrice: 65,
+      stock: true,
+      description: 'Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/christmas/S2.jpeg',
+        '../../asset/christmas/S2.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'stylish': {
+      id: 'stylish', // Added unique ID for cart
+      name: "Stylish",
+      slug: "stylish", 
+      price: 35,
+      oldPrice: 65,
+      stock: true,
+      description: 'Romantic nail design with heart patterns and pink hues. Includes gel polish and topcoat for long-lasting beauty.',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/stylish/St1.jpeg',
+        '../../asset/stylish/St1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'cross-designs': {
+      id: 'cross-designs', // Added unique ID for cart
+      name: "Cross designs",
+      slug: "cross-designs", 
+      price: 60,
+      oldPrice: 95,
+      stock: true,
+      description: 'Long-lasting nail extensions with a natural look using high-quality gel products',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/crosses/C1.jpeg',
+        '../../asset/crosses/C1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'pink-designs': {
+      id: 'pink-designs', // Added unique ID for cart
+      name: "Pink designs",
+      slug: "pink-designs", 
+      price: 50,
+      oldPrice: 65,
+      stock: true,
+      description: 'Custom nail designs from simple patterns to intricate artwork to express your style',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/pink/P1.jpeg',
+        '../../asset/pink/P1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'summer': {
+      id: 'summer', // Added unique ID for cart
+      name: "Summer",
+      slug: "summer", 
+      price: 40,
+      oldPrice: 60,
+      stock: true,
+      description: 'Romantic nail design with heart patterns and pink hues. Includes gel polish and topcoat for long-lasting beauty.',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/summer/Su1.jpeg',
+        '../../asset/summer/Su1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'spring': {
+      id: 'spring', // Added unique ID for cart
+      name: "Spring",
+      slug: "spring", 
+      price: 75,
+      oldPrice: 95,
+      stock: true,
+      description: 'Romantic nail design with heart patterns and pink hues. Includes gel polish and topcoat for long-lasting beauty.',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/spring/Sp1.jpeg',
+        '../../asset/spring/Sp1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
+    'minimal': {
+      id: 'valentines-special', // Added unique ID for cart
+      name: "Minimal",
+      slug: "minimal", 
+      price: 75,
+      oldPrice: 95,
+      stock: true,
+      description: 'Romantic nail design with heart patterns and pink hues. Includes gel polish and topcoat for long-lasting beauty.',
+      features: [
+        'Long-lasting gel finish',
+        'Heart and floral designs',
+        'UV-protective top coat',
+        'Available in multiple lengths'
+      ],
+      images: [
+        '../../asset/artist simple/1.jpeg',
+        '../../asset/artist simple/1.jpeg'
+      ],
+      reviews: [
+        {
+          name: 'Jane D.',
+          rating: 5,
+          comment: 'Absolutely loved it! My nails have never looked better.'
+        },
+        {
+          name: 'Tina A.',
+          rating: 4,
+          comment: 'Very cute design. Lasted over two weeks!'
+        }
+      ]
+    },
   };
 
   // Get the product based on the slug, or show a default/not found message

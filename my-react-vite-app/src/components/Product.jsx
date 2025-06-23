@@ -3,7 +3,7 @@ import ProductPage from './ProductPage'
 
 const Product = () => {
   return (
-    <div>
+    <div className='pt-[50px]'>
       <ProductPage/>
     </div>
   )

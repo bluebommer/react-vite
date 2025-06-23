@@ -1,9 +1,11 @@
 // import React from 'react'
 import React from 'react'
+import { Link } from 'react-router-dom';
 const ServiceCard = () => {
   const services = [
   {
     name: "Season Collection",
+    slug: "season-collection",
     description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
     price: 40,
     img: "../../asset/christmas/S2.jpeg",
@@ -12,6 +14,7 @@ const ServiceCard = () => {
   },
   {
     name: "Stylish", 
+    slug: "stylish",
     description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
     price: 35,
     img: "../../asset/stylish/St1.jpeg",
@@ -20,6 +23,7 @@ const ServiceCard = () => {
   },
   {
     name: "Cross designs",
+    slug: "cross-designs",
     description: "Long-lasting nail extensions with a natural look using high-quality gel products.", 
     price: 60,
     img: "../../asset/crosses/C1.jpeg",
@@ -28,6 +32,7 @@ const ServiceCard = () => {
   },
   {
     name: "Pink designs",
+    slug: "pink-designs",
     description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
     price: 50,
     img: "../../asset/pink/P1.jpeg",
@@ -36,6 +41,7 @@ const ServiceCard = () => {
   },
     {
     name: "Summer",
+    slug: "summer",
     description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
     price: 40,
     img: "../../asset/summer/Su1.jpeg",
@@ -44,6 +50,7 @@ const ServiceCard = () => {
   },
    {
     name: "Spring",
+    slug: "spring",
     description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
     price: 75,
     img: "../../asset/spring/Sp1.jpeg",
@@ -52,6 +59,7 @@ const ServiceCard = () => {
   },
    {
     name: "MInimal",
+    slug: "minimal",
     description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
     price: 75,
     img: "../../asset/artist simple/1.jpeg",
@@ -75,12 +83,18 @@ const ServiceCard = () => {
           <div className="flex justify-between items-center  ">
             <span className="text-pink-600 font-bold">From ${product.price}</span>
            
-            <button 
+            {/* <button 
               // onClick={handleViewMore}
               className='bg-pink-600 text-white px-4 py-2 rounded-full font-bold text-sm hover:bg-pink-700 transition'
             >
               Buy Now
-            </button>
+            </button> */}
+             <Link 
+                    to={`/product/${product.slug}`} 
+                    className="bg-pink-600 text-white px-4 py-2 rounded-full text-sm hover:bg-pink-700 transition"
+                  >
+                    Buy Now
+                  </Link>
           </div>
         </div>
       </div>

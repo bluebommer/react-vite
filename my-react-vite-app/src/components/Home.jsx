@@ -15,7 +15,7 @@ import TopDealsSection from './TopDealsSection.jsx';
 const Home = () => {
   return (
   
-      <div className='font-sans'>
+      <div className='font-sans mt-[50px]'>
       
       {/* <NavBar/> */}
         <Slider/>

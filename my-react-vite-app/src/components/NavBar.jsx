@@ -90,7 +90,7 @@ const NavBar = () => {
 
   return (
     <header 
-      className={`font-serif fixed top-0 left-0 right-0 z-50 h-[90px] transition-all duration-300 ${
+      className={`font-serif fixed top-0 left-0 right-0 z-50 mb-20 h-[90px] transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
@@ -134,7 +134,8 @@ const NavBar = () => {
           </nav>
           
           {/* Mobile Menu Button */}
-          <button 
+         <div className='flex flex-row gap-2'>
+           <button 
             className="md:hidden text-gray-700 hover:text-pink-600 transition-colors duration-200 p-2"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
@@ -155,8 +156,21 @@ const NavBar = () => {
                   isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''
                 }`}
               ></span>
+              
             </div>
           </button>
+           <Link
+              to="/checkout"
+              className="relative p-2 text-gray-700 hover:text-pink-600 transition-colors duration-200"
+            >
+              <ShoppingCart size={24} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+         </div>
         </div>
         
         {/* Mobile Menu */}
