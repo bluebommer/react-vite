@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Scroll from './Scroll.js';
 import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-
+import { useCart } from '../Context/CartContex.jsx';
+import { ShoppingCart } from 'lucide-react';
 
 const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
+  const { totalItems } = useCart();
 
   // Initialize scroll functionality
   useEffect(() => {
@@ -27,34 +28,26 @@ const NavBar = () => {
     }
   };
 
-  // Handle navigation click
-  // const handleNavClick = (e, href) => {
-  //   e.preventDefault();
-  //   smoothScrollTo(href);
-  //   closeMobileMenu();
-  //   setActiveSection(href);
-  // };
   const location = useLocation();
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const handleNavClick = (e, href) => {
-  e.preventDefault();
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
 
-  if (location.pathname !== '/') {
-    navigate('/', { replace: false });
-    // Delay scroll until homepage is rendered
-    setTimeout(() => {
+    if (location.pathname !== '/') {
+      navigate('/', { replace: false });
+      // Delay scroll until homepage is rendered
+      setTimeout(() => {
+        smoothScrollTo(href);
+        setActiveSection(href);
+      }, 100); 
+    } else {
       smoothScrollTo(href);
       setActiveSection(href);
-    }, 100); 
-  } else {
-    smoothScrollTo(href);
-    setActiveSection(href);
-  }
+    }
 
-  closeMobileMenu();
-};
-
+    closeMobileMenu();
+  };
 
   // Handle scroll effect for navbar background and active section detection
   useEffect(() => {
@@ -86,19 +79,18 @@ const handleNavClick = (e, href) => {
     setIsMobileMenuOpen(false);
   };
 
-const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#services', label: 'Collections' },
-  { href: '#deals', label: 'Top Deals' },
-  { href: '#gallery', label: 'Gallery' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
-  { href: '/checkout', label: 'Checkout', isRoute: true }
-];
+  const navLinks = [
+    { href: '#home', label: 'Home' },
+    { href: '#services', label: 'Collections' },
+    { href: '#deals', label: 'Top Deals' },
+    { href: '#gallery', label: 'Gallery' },
+    { href: '#testimonials', label: 'Testimonials' },
+    { href: '#contact', label: 'Contact' }
+  ];
 
   return (
     <header 
-      className={`font-serif fixed top-0 left-0 right-0 z-50 h-[90px]  transition-all duration-300 ${
+      className={`font-serif fixed top-0 left-0 right-0 z-50 h-[90px] transition-all duration-300 ${
         isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
@@ -111,11 +103,11 @@ const navLinks = [
           </div>
           
           {/* Desktop Navigation */}
-          {/* <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link, index) => (
-              <a 
+              <a
                 key={index}
-                href={link.href} 
+                href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`font-medium transition-colors duration-200 ${
                   activeSection === link.href 
@@ -126,44 +118,19 @@ const navLinks = [
                 {link.label}
               </a>
             ))}
-            <a 
-              href="#contact" 
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+            
+            {/* Cart Icon */}
+            <Link
+              to="/checkout"
+              className="relative p-2 text-gray-700 hover:text-pink-600 transition-colors duration-200"
             >
-              Buy Now
-            </a>
-          </nav> */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => (
-  link.isRoute ? (
-    <Link
-      key={index}
-      to={link.href}
-      onClick={closeMobileMenu}
-      className={`font-medium transition-colors duration-200 ${
-        activeSection === link.href 
-          ? 'text-pink-600 hover:text-pink-800' 
-          : 'text-gray-700 hover:text-pink-600'
-      }`}
-    >
-      {link.label}
-    </Link>
-  ) : (
-    <a
-      key={index}
-      href={link.href}
-      onClick={(e) => handleNavClick(e, link.href)}
-      className={`font-medium transition-colors duration-200 ${
-        activeSection === link.href 
-          ? 'text-pink-600 hover:text-pink-800' 
-          : 'text-gray-700 hover:text-pink-600'
-      }`}
-    >
-      {link.label}
-    </a>
-  )
-))}
+              <ShoppingCart size={24} />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -202,10 +169,10 @@ const navLinks = [
         >
           <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-4">
             <div className="flex flex-col space-y-3">
-              {/* {navLinks.map((link, index) => (
-                <a 
+              {navLinks.map((link, index) => (
+                <a
                   key={index}
-                  href={link.href} 
+                  href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`py-3 px-4 rounded-lg transition-all duration-200 ${
                     activeSection === link.href 
@@ -215,36 +182,24 @@ const navLinks = [
                 >
                   {link.label}
                 </a>
-              ))} */}
-              {navLinks.map((link, index) => (
-  link.isRoute ? (
-    <Link
-      key={index}
-      to={link.href}
-      onClick={closeMobileMenu}
-      className={`font-medium transition-colors duration-200 ${
-        activeSection === link.href 
-          ? 'text-pink-600 hover:text-pink-800' 
-          : 'text-gray-700 hover:text-pink-600'
-      }`}
-    >
-      {link.label}
-    </Link>
-  ) : (
-    <a
-      key={index}
-      href={link.href}
-      onClick={(e) => handleNavClick(e, link.href)}
-      className={`font-medium transition-colors duration-200 ${
-        activeSection === link.href 
-          ? 'text-pink-600 hover:text-pink-800' 
-          : 'text-gray-700 hover:text-pink-600'
-      }`}
-    >
-      {link.label}
-    </a>
-  )
-))}
+              ))}
+
+              {/* Mobile Cart Link */}
+              <Link
+                to="/checkout"
+                onClick={closeMobileMenu}
+                className="flex items-center justify-between py-3 px-4 rounded-lg text-gray-700 hover:text-pink-600 hover:bg-pink-50 transition-all duration-200"
+              >
+                <span className="flex items-center">
+                  <ShoppingCart size={20} className="mr-2" />
+                  Cart
+                </span>
+                {totalItems > 0 && (
+                  <span className="bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
 
               <a 
                 href="#contact" 

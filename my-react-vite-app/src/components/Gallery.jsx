@@ -19,12 +19,6 @@ const Gallery = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <GalleryCard />
           </div>
-          
-          <div className="text-center mt-12">
-            <button className="border-2 border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white px-6 py-3 rounded-full font-medium transition">
-              View All Designs
-            </button>
-          </div>
         </div>
       </section>
     </div>

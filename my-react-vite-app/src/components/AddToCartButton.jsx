@@ -2,10 +2,10 @@ import React from 'react';
 import { useCart } from '../Context/CartContex';
 
 const AddToCartButton = ({ product, className = "", children, ...props }) => {
-  const { addItem } = useCart();
+  const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    addItem(product);
+    addToCart(product);
     // Optional: Add toast notification here
     console.log(`Added ${product.name} to cart!`);
   };

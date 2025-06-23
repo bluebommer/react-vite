@@ -1,72 +1,72 @@
 import React from 'react';
+import { useCart } from '../Context/CartContex.jsx';
 import { Plus, Minus, Trash2 } from 'lucide-react';
-import { useCart } from '../Context/CartContex';
 
 const CartItem = ({ item }) => {
-  const { updateQuantity, removeItem } = useCart();
+  const { updateQuantity, removeFromCart } = useCart();
 
   const handleQuantityChange = (newQuantity) => {
-    if (newQuantity === 0) {
-      removeItem(item.id);
-    } else {
-      updateQuantity(item.id, newQuantity);
-    }
+    if (newQuantity < 0) return;
+    updateQuantity(item.id, newQuantity);
+  };
+
+  const handleRemove = () => {
+    removeFromCart(item.id);
   };
 
   return (
-    <div className="flex items-center gap-3 p-3 border-b border-gray-200 hover:bg-gray-50 transition-colors">
+    <div className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-100">
       {/* Product Image */}
-      <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
-        {item.image ? (
-          <img 
-            src={item.image} 
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-pink-200 to-pink-300 flex items-center justify-center">
-            <span className="text-pink-600 text-xs font-semibold">
-              {item.name.substring(0, 2).toUpperCase()}
-            </span>
-          </div>
-        )}
+      <div className="w-20 h-20 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+        <img 
+          src={item.image || '/api/placeholder/80/80'} 
+          alt={item.name}
+          className="w-full h-full object-cover"
+        />
       </div>
-      
-      {/* Product Info */}
+
+      {/* Product Details */}
       <div className="flex-1 min-w-0">
-        <h4 className="font-semibold text-sm text-gray-800 truncate">{item.name}</h4>
-        <p className="text-pink-600 font-semibold text-sm">${item.price.toFixed(2)}</p>
-        {item.variant && (
-          <p className="text-xs text-gray-500">{item.variant}</p>
-        )}
+        <h3 className="font-medium text-gray-900 truncate">{item.name}</h3>
+        <p className="text-sm text-gray-500 mt-1">{item.description}</p>
+        <p className="font-semibold text-pink-600 mt-2">${item.price.toFixed(2)}</p>
       </div>
 
       {/* Quantity Controls */}
-      <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+      <div className="flex items-center gap-2">
         <button
           onClick={() => handleQuantityChange(item.quantity - 1)}
-          className="p-1 hover:bg-white rounded transition-colors"
+          className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
           disabled={item.quantity <= 1}
         >
-          <Minus size={14} className={item.quantity <= 1 ? 'text-gray-400' : 'text-gray-600'} />
+          <Minus size={14} />
         </button>
-        <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+        
+        <span className="w-8 text-center font-medium">{item.quantity}</span>
+        
         <button
           onClick={() => handleQuantityChange(item.quantity + 1)}
-          className="p-1 hover:bg-white rounded transition-colors"
+          className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"
         >
-          <Plus size={14} className="text-gray-600" />
+          <Plus size={14} />
         </button>
       </div>
 
       {/* Remove Button */}
       <button
-        onClick={() => removeItem(item.id)}
+        onClick={handleRemove}
         className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
         title="Remove item"
       >
-        <Trash2 size={16} />
+        <Trash2 size={18} />
       </button>
+
+      {/* Item Total */}
+      <div className="text-right min-w-0">
+        <p className="font-semibold text-gray-900">
+          ${(item.price * item.quantity).toFixed(2)}
+        </p>
+      </div>
     </div>
   );
 };
