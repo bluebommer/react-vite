@@ -1,0 +1,34 @@
+[
+  {
+    "items": [
+      {
+        "id": 2,
+        "name": "Glitter Ombre",
+        "price": 35,
+        "image": "../../asset/All-images/A2.jpeg",
+        "description": "Sparkles that catch the light",
+        "quantity": 1
+      },
+      {
+        "id": 3,
+        "name": "Marble Effect",
+        "price": 32,
+        "image": "../../asset/All-images/A3.jpeg",
+        "description": "Sophisticated stone-inspired design",
+        "quantity": 1
+      }
+    ],
+    "total": 67,
+    "shipping": {
+      "name": "great",
+      "street": "jhgjgu",
+      "city": "lAfhfn",
+      "state": "hbvjgjfu",
+      "zip": "11221",
+      "country": "Nigeria",
+      "phone": "0808798798"
+    },
+    "createdAt": "2025-06-27T23:30:36.612Z",
+    "paymentStatus": "succeeded"
+  }
+]

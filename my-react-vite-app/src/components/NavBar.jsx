@@ -122,7 +122,8 @@ const NavBar = () => {
             {/* Cart Icon */}
             <Link
               to="/checkout"
-              className="relative p-2 text-gray-700 hover:text-pink-600 transition-colors duration-200"
+              className="relative p-2 text-gray-700 hover:text-pink-600
+              lg:hidden md:hidden transition-colors duration-200"
             >
               <ShoppingCart size={24} />
               {totalItems > 0 && (
@@ -161,7 +162,9 @@ const NavBar = () => {
           </button>
            <Link
               to="/checkout"
-              className="relative p-2 text-gray-700 hover:text-pink-600 transition-colors duration-200"
+              className="relative p-2 text-gray-700 hover:text-pink-600 
+               transition-colors duration-200"
+              
             >
               <ShoppingCart size={24} />
               {totalItems > 0 && (
