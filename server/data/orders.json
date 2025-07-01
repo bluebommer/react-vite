@@ -67,5 +67,42 @@
     },
     "createdAt": "2025-07-01T14:05:06.853Z",
     "paymentStatus": "succeeded"
+  },
+  {
+    "items": [
+      {
+        "id": "winter-wonderland",
+        "name": "Winter Wonderland",
+        "price": 45,
+        "image": "../../asset/artist simple/16.jpeg",
+        "quantity": 1
+      },
+      {
+        "id": "summer-glow",
+        "name": "Summer Glow",
+        "price": 44,
+        "image": "../../asset/summer/Su4.jpeg",
+        "quantity": 1
+      },
+      {
+        "id": "valentines-special",
+        "name": "Valentine's Special",
+        "price": 45.5,
+        "image": "../../asset/christmas/S8.jpeg",
+        "quantity": 1
+      }
+    ],
+    "total": 134.5,
+    "shipping": {
+      "name": "tunmise",
+      "street": "7th u close",
+      "city": "Festac town",
+      "state": "lagos state",
+      "zip": "102102",
+      "country": "Nigeria",
+      "phone": "08106123551"
+    },
+    "createdAt": "2025-07-01T14:37:29.343Z",
+    "paymentStatus": "succeeded"
   }
 ]
