@@ -19,6 +19,7 @@ const Checkout = () => {
     zip: "",
     country: "",
     phone: "",
+    email: "",
   });
 
   const isShippingValid = Object.values(shipping).every((val) => val.trim() !== "");
@@ -35,20 +36,21 @@ const Checkout = () => {
     const amount = Math.round(totalPrice * 1.08 * 100);
 
     try {
-      // Temporarily disabled EasyPost label creation until API key is ready
-      // await fetch("http://localhost:4242/create-shipping-label", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify({
-      //     to_name: shipping.name,
-      //     to_street1: shipping.street,
-      //     to_city: shipping.city,
-      //     to_state: shipping.state,
-      //     to_zip: shipping.zip,
-      //     to_country: shipping.country,
-      //     to_phone: shipping.phone,
-      //   }),
-      // });
+      // Send shipping label request
+      await fetch("http://localhost:4242/create-shipping-label", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to_name: shipping.name,
+          to_street1: shipping.street,
+          to_city: shipping.city,
+          to_state: shipping.state,
+          to_zip: shipping.zip,
+          to_country: shipping.country,
+          to_phone: shipping.phone,
+          customer_email: shipping.email,
+        }),
+      });
 
       const res = await fetch("http://localhost:4242/create-payment-intent", {
         method: "POST",
@@ -67,7 +69,6 @@ const Checkout = () => {
       if (result.error) {
         alert(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
-        // Save order to backend
         await fetch("http://localhost:4242/save-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -80,8 +81,9 @@ const Checkout = () => {
           }),
         });
 
-        alert("Payment successful! Order saved.");
-        clearCart();
+      clearCart();
+window.location.href = "/thank-you";
+
       }
 
       setIsProcessing(false);
@@ -161,13 +163,13 @@ const Checkout = () => {
               {/* Shipping Form */}
               <div className="mb-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Shipping Information</h3>
-                {["name", "street", "city", "state", "zip", "country", "phone"].map((key) => (
+                {Object.keys(shipping).map((key) => (
                   <div key={key} className="mb-3">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {key.charAt(0).toUpperCase() + key.slice(1).replace("zip", "ZIP / Postal Code").replace("state", "State / Province").replace("street", "Street Address").replace("name", "Full Name").replace("phone", "Phone Number").replace("country", "Country")}
+                      {key.charAt(0).toUpperCase() + key.slice(1).replace("zip", "ZIP / Postal Code").replace("state", "State / Province").replace("street", "Street Address").replace("name", "Full Name").replace("phone", "Phone Number").replace("country", "Country").replace("email", "Email")}
                     </label>
                     <input
-                      type="text"
+                      type={key === "email" ? "email" : "text"}
                       value={shipping[key]}
                       onChange={(e) => setShipping({ ...shipping, [key]: e.target.value })}
                       className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500"

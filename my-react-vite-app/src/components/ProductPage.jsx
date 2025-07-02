@@ -350,6 +350,246 @@ const ProductPage = () => {
         }
       ]
     },
+    'french-tip-elegance': {
+  id: 'french-tip-elegance',
+  name: "French Tip Elegance",
+  slug: "french-tip-elegance",
+  price: 28.00,
+  oldPrice: 38.00,
+  stock: true,
+  description: "Classic French tip style with a timeless and elegant look.",
+  features: [
+    "Glossy white tips",
+    "Natural pink base",
+    "Durable gel application",
+    "Perfect for any occasion"
+  ],
+  images: [
+    '../../asset/All-images/A1.jpeg',
+    '../../asset/All-images/A1.jpeg'
+  ],
+  reviews: [
+    { name: 'Lola M.', rating: 5, comment: "So elegant and professional!" },
+    { name: 'Cynthia B.', rating: 4, comment: "Goes with everything I wear!" }
+  ]
+},
+
+'glitter-ombre': {
+  id: 'glitter-ombre',
+  name: "Glitter Ombre",
+  slug: "glitter-ombre",
+  price: 35.00,
+  oldPrice: 45.00,
+  stock: true,
+  description: "Glittery gradient fade design to catch the light and turn heads.",
+  features: [
+    "Smooth ombre transition",
+    "High sparkle glitter",
+    "Perfect for events",
+    "Shiny gel topcoat"
+  ],
+  images: [
+    '../../asset/All-images/A2.jpeg',
+    '../../asset/All-images/A2.jpeg'
+  ],
+  reviews: [
+    { name: 'Jessica H.', rating: 5, comment: "Sparkles beautifully!" },
+    { name: 'Nina T.', rating: 4, comment: "Stunning for parties." }
+  ]
+},
+
+'marble-effect': {
+  id: 'marble-effect',
+  name: "Marble Effect",
+  slug: "marble-effect",
+  price: 32.00,
+  oldPrice: 42.00,
+  stock: true,
+  description: "Elegant stone-inspired design with luxurious marble textures.",
+  features: [
+    "Marble-inspired swirls",
+    "Neutral tones",
+    "Perfect for minimalist looks",
+    "Gel durability"
+  ],
+  images: [
+    '../../asset/All-images/A3.jpeg',
+    '../../asset/All-images/A3.jpeg'
+  ],
+  reviews: [
+    { name: 'Bianca E.', rating: 5, comment: "So sophisticated!" },
+    { name: 'Zara N.', rating: 4, comment: "Looks like real marble!" }
+  ]
+},
+
+'pastel-dreams': {
+  id: 'pastel-dreams',
+  name: "Pastel Dreams",
+  slug: "pastel-dreams",
+  price: 25.00,
+  oldPrice: 35.00,
+  stock: true,
+  description: "Soft and dreamy pastel tones for a gentle spring aesthetic.",
+  features: [
+    "Light pastel tones",
+    "Spring-ready shades",
+    "Smooth finish",
+    "Perfect for everyday wear"
+  ],
+  images: [
+    '../../asset/All-images/A4.jpeg',
+    '../../asset/All-images/A4.jpeg'
+  ],
+  reviews: [
+    { name: 'Elena W.', rating: 5, comment: "Perfect spring vibe." },
+    { name: 'Tomi F.', rating: 4, comment: "Very soft and feminine." }
+  ]
+},
+
+'bold-red': {
+  id: 'bold-red',
+  name: "Bold Red",
+  slug: "bold-red",
+  price: 22.00,
+  oldPrice: 30.00,
+  stock: true,
+  description: "Powerful, confident red polish that stands out.",
+  features: [
+    "Classic red tone",
+    "High shine",
+    "Strong coverage",
+    "Durable topcoat"
+  ],
+  images: [
+    '../../asset/All-images/A5.jpeg',
+    '../../asset/All-images/A5.jpeg'
+  ],
+  reviews: [
+    { name: 'Tasha R.', rating: 5, comment: "A timeless red!" },
+    { name: 'Janet O.', rating: 4, comment: "Very powerful look." }
+  ]
+},
+
+'abstract-art': {
+  id: 'abstract-art',
+  name: "Abstract Art",
+  slug: "abstract-art",
+  price: 38.00,
+  oldPrice: 48.00,
+  stock: true,
+  description: "Unique nail art that showcases your personality and creativity.",
+  features: [
+    "Modern abstract shapes",
+    "Hand-painted details",
+    "One-of-a-kind designs",
+    "Long-lasting polish"
+  ],
+  images: [
+    '../../asset/All-images/A6.jpeg',
+    '../../asset/All-images/A6.jpeg'
+  ],
+  reviews: [
+    { name: 'Diana F.', rating: 5, comment: "So expressive and stylish!" },
+    { name: 'Yemi C.', rating: 4, comment: "Everyone complimented them!" }
+  ]
+},
+
+'geometric-patterns': {
+  id: 'geometric-patterns',
+  name: "Geometric Patterns",
+  slug: "geometric-patterns",
+  price: 30.00,
+  oldPrice: 40.00,
+  stock: true,
+  description: "Bold lines and modern patterns for a cutting-edge look.",
+  features: [
+    "Sharp lines & angles",
+    "Stylish geometry",
+    "Minimalist color palette",
+    "Modern fashion-forward look"
+  ],
+  images: [
+    '../../asset/All-images/A7.jpeg',
+    '../../asset/All-images/A7.jpeg'
+  ],
+  reviews: [
+    { name: 'Ify M.', rating: 5, comment: "Loved the crisp design!" },
+    { name: 'Ava T.', rating: 4, comment: "Very trendy and sharp!" }
+  ]
+},
+
+'floral-fantasy': {
+  id: 'floral-fantasy',
+  name: "Floral Fantasy",
+  slug: "floral-fantasy",
+  price: 42.00,
+  oldPrice: 52.00,
+  stock: true,
+  description: "Soft and delicate flower motifs for a romantic look.",
+  features: [
+    "Detailed flower designs",
+    "Spring/summer friendly",
+    "Hand-drawn art",
+    "Gentle pastel base"
+  ],
+  images: [
+    '../../asset/All-images/A8.jpeg',
+    '../../asset/All-images/A8.jpeg'
+  ],
+  reviews: [
+    { name: 'Tina Z.', rating: 5, comment: "Super feminine!" },
+    { name: 'Blessing A.', rating: 4, comment: "Just what I wanted!" }
+  ]
+},
+
+'metallic-shine': {
+  id: 'metallic-shine',
+  name: "Metallic Shine",
+  slug: "metallic-shine",
+  price: 40.00,
+  oldPrice: 50.00,
+  stock: true,
+  description: "Gleaming metallic finish that reflects your inner glow.",
+  features: [
+    "High gloss metallic",
+    "Chrome-like shine",
+    "Bold fashion statement",
+    "Long-lasting shimmer"
+  ],
+  images: [
+    '../../asset/All-images/A9.jpeg',
+    '../../asset/All-images/A9.jpeg'
+  ],
+  reviews: [
+    { name: 'Kemi F.', rating: 5, comment: "So shiny and sleek!" },
+    { name: 'Nora M.', rating: 4, comment: "Perfect for a night out." }
+  ]
+},
+
+'sunset-gradient': {
+  id: 'sunset-gradient',
+  name: "Sunset Gradient",
+  slug: "sunset-gradient",
+  price: 33.00,
+  oldPrice: 43.00,
+  stock: true,
+  description: "Warm gradient that blends orange, pink and purple for sunset vibes.",
+  features: [
+    "Gradient fade colors",
+    "Sunset-inspired tones",
+    "Smooth transition blend",
+    "Gel-coated finish"
+  ],
+  images: [
+    '../../asset/All-images/A10.jpeg',
+    '../../asset/All-images/A10.jpeg'
+  ],
+  reviews: [
+    { name: 'Nina O.', rating: 5, comment: "So beautiful and warm!" },
+    { name: 'Debbie Q.', rating: 4, comment: "Gives me vacation vibes." }
+  ]
+},
+
   };
 
   // Get the product based on the slug, or show a default/not found message

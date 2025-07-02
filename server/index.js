@@ -2,54 +2,68 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
-const fs = require('fs');
-const path = require('path');
+const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
+const EasyPost = require('@easypost/api');
 
 const app = express();
 const PORT = process.env.PORT || 4242;
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Basic test route
+// Stripe
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+// EasyPost
+const easyPost = new EasyPost(process.env.EASYPOST_API_KEY);
+
+// MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+.then(() => console.log('✅ Connected to MongoDB'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
+
+const orderSchema = new mongoose.Schema({
+  items: Array,
+  total: Number,
+  shipping: Object,
+  createdAt: String,
+  paymentStatus: String,
+});
+
+const Order = mongoose.model('Order', orderSchema);
+
+// Email
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+// Routes
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Server is running',
-    timestamp: new Date().toISOString()
-  });
+  res.json({ message: 'Server is running', timestamp: new Date().toISOString() });
 });
 
-// ✅ Optional test API route
 app.get('/api/test', (req, res) => {
-  res.json({
-    message: 'API is working!',
-    data: { test: true }
-  });
+  res.json({ message: 'API is working!', data: { test: true } });
 });
 
-// ✅ Stripe PaymentIntent route
 app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
-
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
     });
-
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
+    res.send({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
     res.status(500).send({ error: err.message });
   }
 });
-
-// ✅ EasyPost Shipping Label
-const EasyPost = require('@easypost/api');
-const easyPost = new EasyPost(process.env.EASYPOST_API_KEY);
 
 app.post('/create-shipping-label', async (req, res) => {
   const {
@@ -108,27 +122,12 @@ app.post('/create-shipping-label', async (req, res) => {
   }
 });
 
-// ✅ Nodemailer transporter setup
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-// ✅ Save Order and Send Email
 app.post('/save-order', async (req, res) => {
-  const newOrder = req.body;
-  const filePath = path.join(__dirname, 'data', 'orders.json');
+  const newOrder = new Order(req.body);
 
   try {
-    const existingData = await fs.promises.readFile(filePath, 'utf-8');
-    const orders = JSON.parse(existingData);
-    orders.push(newOrder);
-    await fs.promises.writeFile(filePath, JSON.stringify(orders, null, 2));
+    await newOrder.save();
 
-    // Build order summary
     const orderText = `
 New Order Received!
 
@@ -146,30 +145,35 @@ ${newOrder.shipping.city}, ${newOrder.shipping.state}, ${newOrder.shipping.zip}
 ${newOrder.shipping.country}
     `;
 
-    // Send email to client
-   await transporter.sendMail({
-  from: `"Order Notification" <${process.env.EMAIL_USER}>`,
-  to: process.env.EMAIL_TO,
-  subject: `🛒 New Order from ${newOrder.shipping.name}`,
-  text: orderText,
+   // Email label
+await transporter.sendMail({
+  from: `"Shipping Label" <${process.env.EMAIL_USER}>`,
+  to: `${process.env.EMAIL_TO}, ${req.body.customer_email}`
+, // or use req.body.email if sending to customer
+  subject: `📦 Shipping Label for ${to_name}`,
+  text: `Here is your shipping label:\n\nTracking: ${shipment.tracking_code}\nLabel URL: ${shipment.postage_label.label_url}`,
 }, (err, info) => {
   if (err) {
-    console.error('❌ Email failed:', err);
+    console.error('❌ Failed to email label:', err);
   } else {
-    console.log('✅ Email sent:', info.response);
+    console.log('✅ Label emailed:', info.response);
   }
+});
+
+// Respond as usual
+res.json({
+  tracking_number: shipment.tracking_code,
+  label_url: shipment.postage_label.label_url,
 });
 
 
     res.status(200).json({ message: 'Order saved and email sent!' });
   } catch (error) {
-    console.error('Failed to process order:', error);
+    console.error('Failed to save order or send email:', error);
     res.status(500).json({ error: 'Failed to save order or send email' });
   }
 });
 
-// ✅ Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  console.log(`API available at http://localhost:${PORT}/api/test`);
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
