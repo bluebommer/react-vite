@@ -613,7 +613,17 @@ const ProductPage = () => {
   };
 
   return (
+    
     <div className="container mx-auto px-4 py-8">
+      <div className="mb-6">
+  <Link
+    to="/"
+    className="inline-flex items-center text-sm text-gray-600 hover:text-pink-600 transition"
+  >
+    ← Back to Shop
+  </Link>
+</div>
+
       {/* Product Header */}
       <div className="flex flex-col md:flex-row gap-10">
         {/* Product Images */}

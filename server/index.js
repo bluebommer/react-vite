@@ -145,27 +145,18 @@ ${newOrder.shipping.city}, ${newOrder.shipping.state}, ${newOrder.shipping.zip}
 ${newOrder.shipping.country}
     `;
 
-   // Email label
-await transporter.sendMail({
-  from: `"Shipping Label" <${process.env.EMAIL_USER}>`,
-  to: `${process.env.EMAIL_TO}, ${req.body.customer_email}`
-, // or use req.body.email if sending to customer
-  subject: `📦 Shipping Label for ${to_name}`,
-  text: `Here is your shipping label:\n\nTracking: ${shipment.tracking_code}\nLabel URL: ${shipment.postage_label.label_url}`,
-}, (err, info) => {
-  if (err) {
-    console.error('❌ Failed to email label:', err);
-  } else {
-    console.log('✅ Label emailed:', info.response);
-  }
-});
-
-// Respond as usual
-res.json({
-  tracking_number: shipment.tracking_code,
-  label_url: shipment.postage_label.label_url,
-});
-
+    await transporter.sendMail({
+      from: `"Order Notification" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_TO,
+      subject: `🛒 New Order from ${newOrder.shipping.name}`,
+      text: orderText,
+    }, (err, info) => {
+      if (err) {
+        console.error('❌ Email failed:', err);
+      } else {
+        console.log('✅ Email sent:', info.response);
+      }
+    });
 
     res.status(200).json({ message: 'Order saved and email sent!' });
   } catch (error) {

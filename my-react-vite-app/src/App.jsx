@@ -9,6 +9,7 @@ import Checkout from './components/Checkout';
 import NavBar from './components/NavBar';
 import { CartProvider } from './Context/CartContex';
 import ThankYou from './components/ThankYou';
+import ScrollToTop from './components/ScrollToTop';
 
 const stripePromise = loadStripe('pk_test_51RdECqR7jEddfEfnuDdi8u4Do8LZ5SKFL7CamyJWflaZZhDF1ILYiXNOaPM2TJz9IkFP3cMq0G0bPjH0uheMYHfZ002xGbrSux'); // Replace this with your Stripe key
 
@@ -16,7 +17,8 @@ function App() {
   return (
     <CartProvider>
       <Elements stripe={stripePromise}>
-        <>
+        <>   
+        <ScrollToTop />
           <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />

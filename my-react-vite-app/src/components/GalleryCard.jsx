@@ -106,10 +106,11 @@ const GalleryCard = () => {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
-          <div
-            className="relative max-w-4xl max-h-full bg-white rounded-lg overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
+         <div
+  className="relative max-w-4xl max-h-screen overflow-y-auto bg-white rounded-lg"
+  onClick={(e) => e.stopPropagation()}
+>
+
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm"
