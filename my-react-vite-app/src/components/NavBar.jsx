@@ -99,7 +99,7 @@ const NavBar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <i className="fas fa-hand-sparkles text-3xl text-pink-500 mr-2"></i>
-            <h1 className="text-2xl font-bold text-pink-600">Nailzby.rose</h1>
+           <img src="../../asset/logo.png" className="h-[60px]"/>
           </div>
           
           {/* Desktop Navigation */}

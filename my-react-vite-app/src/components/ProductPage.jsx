@@ -691,7 +691,7 @@ const ProductPage = () => {
                     value={customSizes[finger]}
                     onChange={(e) => setCustomSizes({ ...customSizes, [finger]: e.target.value })}
                     className="w-full border border-gray-300 rounded-md px-3 py-1"
-                    placeholder="Enter size"
+                    placeholder="Enter size in mm"
                   />
                 </div>
               ))}
