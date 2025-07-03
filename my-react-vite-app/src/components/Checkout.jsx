@@ -36,7 +36,6 @@ const Checkout = () => {
     const amount = Math.round(totalPrice * 1.08 * 100);
 
     try {
-      // Send shipping label request
       await fetch("http://localhost:4242/create-shipping-label", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,11 +68,17 @@ const Checkout = () => {
       if (result.error) {
         alert(result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
+        const itemsWithSize = items.map((item) => ({
+          ...item,
+          size: item.size || null,
+          fingerSizes: item.fingerSizes || null,
+        }));
+
         await fetch("http://localhost:4242/save-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            items,
+            items: itemsWithSize,
             total: totalPrice,
             shipping,
             createdAt: new Date().toISOString(),
@@ -81,9 +86,18 @@ const Checkout = () => {
           }),
         });
 
-      clearCart();
-window.location.href = "/thank-you";
+        await fetch("http://localhost:4242/send-order-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: itemsWithSize,
+            total: totalPrice,
+            shipping,
+          }),
+        });
 
+        clearCart();
+        window.location.href = "/thank-you";
       }
 
       setIsProcessing(false);
@@ -160,7 +174,6 @@ window.location.href = "/thank-you";
                 </div>
               </div>
 
-              {/* Shipping Form */}
               <div className="mb-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Shipping Information</h3>
                 {Object.keys(shipping).map((key) => (
@@ -179,7 +192,6 @@ window.location.href = "/thank-you";
                 ))}
               </div>
 
-              {/* Stripe Card Input */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">Card Details</label>
                 <div className="border rounded-md p-2 h-12">
@@ -196,7 +208,6 @@ window.location.href = "/thank-you";
                 </div>
               </div>
 
-              {/* Checkout Button */}
               <button
                 onClick={handleCheckout}
                 disabled={!isShippingValid || isProcessing}

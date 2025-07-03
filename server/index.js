@@ -9,23 +9,27 @@ const EasyPost = require('@easypost/api');
 const app = express();
 const PORT = process.env.PORT || 4242;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Stripe
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
-// EasyPost
 const easyPost = new EasyPost(process.env.EASYPOST_API_KEY);
 
-// MongoDB
 mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log('✅ Connected to MongoDB'))
+  .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
 const orderSchema = new mongoose.Schema({
-  items: Array,
+  items: [
+    {
+      id: String,
+      name: String,
+      price: Number,
+      quantity: Number,
+      image: String,
+      size: mongoose.Schema.Types.Mixed
+    }
+  ],
   total: Number,
   shipping: Object,
   createdAt: String,
@@ -34,7 +38,6 @@ const orderSchema = new mongoose.Schema({
 
 const Order = mongoose.model('Order', orderSchema);
 
-// Email
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -43,13 +46,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Routes
 app.get('/', (req, res) => {
   res.json({ message: 'Server is running', timestamp: new Date().toISOString() });
-});
-
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'API is working!', data: { test: true } });
 });
 
 app.post('/create-payment-intent', async (req, res) => {
@@ -66,7 +64,7 @@ app.post('/create-payment-intent', async (req, res) => {
 });
 
 app.post('/create-shipping-label', async (req, res) => {
-  const {
+    const {
     to_name,
     to_street1,
     to_city,
@@ -77,7 +75,7 @@ app.post('/create-shipping-label', async (req, res) => {
   } = req.body;
 
   try {
-    const toAddress = await easyPost.Address.create({
+   const toAddress = await easyPost.Address.create({
       name: to_name,
       street1: to_street1,
       city: to_city,
@@ -103,16 +101,14 @@ app.post('/create-shipping-label', async (req, res) => {
       height: 4,
       weight: 16,
     });
-
-    const shipment = await easyPost.Shipment.create({
+ const shipment = await easyPost.Shipment.create({
       to_address: toAddress,
       from_address: fromAddress,
       parcel: parcel,
     });
-
     await shipment.buy(shipment.rates[0]);
 
-    res.json({
+   res.json({
       tracking_number: shipment.tracking_code,
       label_url: shipment.postage_label.label_url,
     });
@@ -128,14 +124,22 @@ app.post('/save-order', async (req, res) => {
   try {
     await newOrder.save();
 
-    const orderText = `
+  const orderText = `
 New Order Received!
 
 Customer: ${newOrder.shipping.name}
 Phone: ${newOrder.shipping.phone}
 
 Items:
-${newOrder.items.map(i => `- ${i.name} x${i.quantity || 1} ($${i.price})`).join('\n')}
+${newOrder.items.map(i => {
+  const sizeInfo = i.size
+    ? `Size: ${typeof i.size === 'string' ? i.size : JSON.stringify(i.size)}`
+    : '';
+  const fingerInfo = i.fingerSizes
+    ? `Finger Sizes: ${JSON.stringify(i.fingerSizes)}`
+    : '';
+  return `- ${i.name} x${i.quantity || 1} ($${i.price}) ${sizeInfo} ${fingerInfo}`;
+}).join('\n')}
 
 Total: $${newOrder.total.toFixed(2)}
 
@@ -143,14 +147,15 @@ Shipping Address:
 ${newOrder.shipping.street}
 ${newOrder.shipping.city}, ${newOrder.shipping.state}, ${newOrder.shipping.zip}
 ${newOrder.shipping.country}
-    `;
+`;
+
 
     await transporter.sendMail({
       from: `"Order Notification" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
       subject: `🛒 New Order from ${newOrder.shipping.name}`,
       text: orderText,
-    }, (err, info) => {
+    },(err, info) => {
       if (err) {
         console.error('❌ Email failed:', err);
       } else {

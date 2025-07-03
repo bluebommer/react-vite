@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import AddToCartButton from './AddToCartButton'; // Adjust path as needed
 
@@ -591,9 +591,12 @@ const ProductPage = () => {
 },
 
   };
+  
+   const [sizeOption, setSizeOption] = useState('small');
+  const [customSizes, setCustomSizes] = useState({ thumb: '', index: '', middle: '', ring: '', pinky: '' });
 
   // Get the product based on the slug, or show a default/not found message
-  const product = products[slug];
+ const product = products[slug];
 
   if (!product) {
     return (
@@ -604,29 +607,26 @@ const ProductPage = () => {
     );
   }
 
-  // Prepare product object for cart (only the necessary fields)
   const cartProduct = {
     id: product.id,
     name: product.name,
     price: product.price,
-    image: product.images[0] // First image as the cart thumbnail
+    image: product.images[0],
+    size: sizeOption === 'custom' ? customSizes : sizeOption
   };
 
   return (
-    
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-  <Link
-    to="/"
-    className="inline-flex items-center text-sm text-gray-600 hover:text-pink-600 transition"
-  >
-    ← Back to Shop
-  </Link>
-</div>
+        <Link
+          to="/"
+          className="inline-flex items-center text-sm text-gray-600 hover:text-pink-600 transition"
+        >
+          ← Back to Shop
+        </Link>
+      </div>
 
-      {/* Product Header */}
       <div className="flex flex-col md:flex-row gap-10">
-        {/* Product Images */}
         <div className="md:w-1/2">
           <img
             src={product.images[0]}
@@ -645,7 +645,6 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Product Info */}
         <div className="md:w-1/2">
           <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.name}</h1>
           <div className="mb-4">
@@ -667,9 +666,40 @@ const ProductPage = () => {
             {product.stock ? 'In Stock' : 'Out of Stock'}
           </p>
 
-          {/* Updated Add to Cart Button */}
+          {/* Size selection */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-medium mb-2">Select Size:</label>
+            <select
+              value={sizeOption}
+              onChange={(e) => setSizeOption(e.target.value)}
+              className="border border-gray-300 rounded-md p-2 w-full"
+            >
+              <option value="small">Small (Thumb: 1, Index: 5, Middle: 4, Ring: 6, Pinky: 8)</option>
+              <option value="medium">Medium (Thumb: 0, Index: 4, Middle: 3, Ring: 5, Pinky: 7)</option>
+              <option value="large">Large (Thumb: 0, Index: 3, Middle: 2, Ring: 4, Pinky: 6)</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+
+          {sizeOption === 'custom' && (
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              {['thumb', 'index', 'middle', 'ring', 'pinky'].map((finger) => (
+                <div key={finger}>
+                  <label className="block text-sm text-gray-700 capitalize mb-1">{finger}</label>
+                  <input
+                    type="text"
+                    value={customSizes[finger]}
+                    onChange={(e) => setCustomSizes({ ...customSizes, [finger]: e.target.value })}
+                    className="w-full border border-gray-300 rounded-md px-3 py-1"
+                    placeholder="Enter size"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
           {product.stock ? (
-            <AddToCartButton 
+            <AddToCartButton
               product={cartProduct}
               className="px-6 py-3 text-white rounded-lg shadow text-lg font-semibold"
             >
@@ -705,23 +735,22 @@ const ProductPage = () => {
         <h2 className="text-2xl font-semibold mb-6 text-gray-800">You may also like</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(products)
-            .filter(([key]) => key !== slug) // Exclude current product
-            .slice(0, 3) // Show only 3 related products
+            .filter(([key]) => key !== slug)
+            .slice(0, 3)
             .map(([key, relatedProduct]) => (
               <div key={key} className="bg-white shadow rounded p-4 hover:shadow-lg transition-shadow">
                 <Link to={`/product/${relatedProduct.slug}`}>
-                  <img 
-                    src={relatedProduct.images[0]} 
-                    alt={relatedProduct.name} 
-                    className="rounded h-40 w-full object-cover mb-4 cursor-pointer" 
+                  <img
+                    src={relatedProduct.images[0]}
+                    alt={relatedProduct.name}
+                    className="rounded h-40 w-full object-cover mb-4 cursor-pointer"
                   />
                   <h3 className="font-bold text-lg cursor-pointer hover:text-pink-600 transition-colors">
                     {relatedProduct.name}
                   </h3>
                   <p className="text-pink-600 font-semibold mb-3">${relatedProduct.price.toFixed(2)}</p>
                 </Link>
-                {/* Add to Cart button for related products */}
-                <AddToCartButton 
+                <AddToCartButton
                   product={{
                     id: relatedProduct.id,
                     name: relatedProduct.name,
