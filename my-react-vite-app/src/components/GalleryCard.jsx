@@ -1,26 +1,24 @@
-
 import React, { useState } from 'react';
 import { useCart } from '../Context/CartContex';
 import { useNavigate } from 'react-router-dom';
-
-
 
 const GalleryCard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const { addToCart } = useCart();
   const navigate = useNavigate();
-const A1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A1_xflh6r.jpg';
-const A2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630178/A2_dnjktz.jpg';
-const A3 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630181/A3_okugnr.jpg';
-const A4 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630204/A4_d7klna.jpg';
-const A5 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630188/A5_uqksg4.jpg';
-const A6 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630184/A6_wrjapw.jpg';
-const A7 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630183/A7_vaeegv.jpg';
-const A8 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630194/A8_rtyoty.jpg';
-const A9 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630192/A9_kx00tu.jpg';
-const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pmyr76.jpg';
+  
+  const A1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A1_xflh6r.jpg';
+  const A2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630178/A2_dnjktz.jpg';
+  const A3 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630181/A3_okugnr.jpg';
+  const A4 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630204/A4_d7klna.jpg';
+  const A5 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630188/A5_uqksg4.jpg';
+  const A6 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630184/A6_wrjapw.jpg';
+  const A7 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630183/A7_vaeegv.jpg';
+  const A8 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630194/A8_rtyoty.jpg';
+  const A9 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630192/A9_kx00tu.jpg';
+  const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pmyr76.jpg';
 
-   const dets = [
+  const dets = [
     { id: 1, name: "French Tip Elegance", image: A1, alt: "French Tip Nail", phrase: "Classic and timeless elegance", price: 28.00, slug:"french-tip-elegance" },
     { id: 2, name: "Glitter Ombre", image: A2 , alt: "Glitter Ombre", phrase: "Sparkles that catch the light", price: 35.00, slug:"glitter-ombre" },
     { id: 3, name: "Marble Effect", image: A3, alt: "Marble Effect", phrase: "Sophisticated stone-inspired design", price: 32.00, slug:"marble-effect" },
@@ -50,7 +48,6 @@ const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pm
       image: det.image,
       description: det.phrase,
     };
-    // addToCart(product);
     navigate(`/product/${det.slug}`);
   };
 
@@ -118,11 +115,10 @@ const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pm
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
-         <div
-  className="relative max-w-4xl max-h-screen overflow-y-auto bg-white rounded-lg"
-  onClick={(e) => e.stopPropagation()}
->
-
+          <div
+            className="relative w-full max-w-sm sm:max-w-md md:max-w-4xl max-h-screen overflow-y-auto bg-white rounded-lg mx-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm"
@@ -130,38 +126,46 @@ const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pm
               ✕
             </button>
 
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-2/3">
+            <div className="flex flex-col">
+              {/* Image Section */}
+              <div className="w-full">
                 <img
                   src={selectedImage.image}
                   alt={selectedImage.alt}
-                  className="w-full h-96 md:h-[500px] object-cover"
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
                 />
               </div>
 
-              <div className="md:w-1/3 p-6 flex flex-col justify-between">
+              {/* Content Section */}
+              <div className="p-4 sm:p-6 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">{selectedImage.name}</h3>
-                  <p className="text-gray-600 mb-4">{selectedImage.phrase}</p>
-                  <p className="text-3xl font-bold text-rose-600 mb-6">${selectedImage.price.toFixed(2)}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">
+                    {selectedImage.name}
+                  </h3>
+                  <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">
+                    {selectedImage.phrase}
+                  </p>
+                  <p className="text-2xl sm:text-3xl font-bold text-rose-600 mb-4 sm:mb-6">
+                    ${selectedImage.price.toFixed(2)}
+                  </p>
 
-                  <div className="space-y-2 mb-6">
-                    <p className="text-sm text-gray-500">✓ Professional application</p>
-                    <p className="text-sm text-gray-500">✓ Long-lasting finish</p>
-                    <p className="text-sm text-gray-500">✓ High-quality materials</p>
+                  <div className="space-y-2 mb-4 sm:mb-6">
+                    <p className="text-xs sm:text-sm text-gray-500">✓ Professional application</p>
+                    <p className="text-xs sm:text-sm text-gray-500">✓ Long-lasting finish</p>
+                    <p className="text-xs sm:text-sm text-gray-500">✓ High-quality materials</p>
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <button
                     onClick={() => handleModalAddToCart(selectedImage)}
-                    className="w-full bg-rose-500 hover:bg-rose-600 text-white py-3 px-6 rounded-lg font-medium transition"
+                    className="w-full bg-rose-500 hover:bg-rose-600 text-white py-3 px-4 sm:px-6 rounded-lg font-medium transition text-sm sm:text-base"
                   >
                     Add to Cart - ${selectedImage.price.toFixed(2)}
                   </button>
                   <button
                     onClick={closeModal}
-                    className="w-full border border-gray-300 text-gray-700 hover:bg-gray-50 py-3 px-6 rounded-lg font-medium transition"
+                    className="w-full border border-gray-300 text-gray-700 hover:bg-gray-50 py-3 px-4 sm:px-6 rounded-lg font-medium transition text-sm sm:text-base"
                   >
                     Continue Browsing
                   </button>
