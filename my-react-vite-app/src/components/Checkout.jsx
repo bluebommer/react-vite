@@ -54,7 +54,7 @@ const Checkout = () => {
     const amount = Math.round(totalPrice * 1.08 * 100);
 
     try {
-      await fetch("http://localhost:4242/create-shipping-label", {
+      await fetch("https://react-vite-rjx3.onrender.com/create-shipping-label", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,7 +69,7 @@ const Checkout = () => {
         }),
       });
 
-      const res = await fetch("http://localhost:4242/create-payment-intent", {
+      const res = await fetch("https://react-vite-rjx3.onrender.com/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount }),
@@ -92,7 +92,7 @@ const Checkout = () => {
           fingerSizes: item.fingerSizes || null,
         }));
 
-        await fetch("http://localhost:4242/save-order", {
+        await fetch("https://react-vite-rjx3.onrender.com/save-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -104,7 +104,7 @@ const Checkout = () => {
           }),
         });
 
-        await fetch("http://localhost:4242/send-order-email", {
+        await fetch("https://react-vite-rjx3.onrender.com/send-order-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
