@@ -65,11 +65,11 @@ const TopDealsSection = () => {
               </div>
               
               {/* Image Section */}
-              <div className={`h-48 sm:h-56 md:h-64 bg-gradient-to-r ${deal.grad1} ${deal.grad2} flex items-center justify-center p-4 relative overflow-hidden`}>
+              <div className={`h-56 sm:h-64 md:h-72 lg:h-80 bg-gradient-to-r ${deal.grad1} ${deal.grad2} flex items-center justify-center p-4 relative overflow-hidden`}>
                 <img 
                   src={deal.img} 
                   alt={deal.name}
-                  className="w-full h-full object-contain rounded-lg"
+                  className="w-full h-full object-cover rounded-lg"
                 />
               </div>
               
