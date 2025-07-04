@@ -94,7 +94,7 @@ app.post('/save-order', async (req, res) => {
       <p><strong>Customer:</strong> ${newOrder.shipping.name}</p>
       <p><strong>Phone:</strong> ${newOrder.shipping.phone}</p>
       <h3 style="color: #d63384;">Items:</h3>
-      <h3>${newOrder.shipping.email}</h3>
+      <h3>customer email:${newOrder.shipping.email}</h3>
       <ul style="padding-left: 20px;">${itemHtmlList}</ul>
       <p><strong>Total:</strong> <span style="color: #d63384; font-weight: bold;">$${newOrder.total.toFixed(2)}</span></p>
       <h3 style="color: #d63384;">Shipping Address:</h3>
