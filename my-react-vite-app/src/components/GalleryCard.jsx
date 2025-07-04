@@ -9,16 +9,16 @@ const GalleryCard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const { addToCart } = useCart();
   const navigate = useNavigate();
-  const A1 = "../../asset/All-images/A1.jpeg" ;
-const A2 = "../../asset/All-images/A2.jpeg";
-const A3 = "../../asset/All-images/A3.jpeg";
-const A4 = "../../asset/All-images/A4.jpeg";
-const A5 = "../../asset/All-images/A5.jpeg";
-const A6 = "../../asset/All-images/A6.jpeg";
-const A7 = "../../asset/All-images/A7.jpeg";
-const A8 = "../../asset/All-images/A8.jpeg";
-const A9 = "../../asset/All-images/A9.jpeg";
-const A10 = "../../asset/All-images/A10.jpeg";
+const A1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A1_xflh6r.jpg';
+const A2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630178/A2_dnjktz.jpg';
+const A3 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630181/A3_okugnr.jpg';
+const A4 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630204/A4_d7klna.jpg';
+const A5 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630188/A5_uqksg4.jpg';
+const A6 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630184/A6_wrjapw.jpg';
+const A7 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630183/A7_vaeegv.jpg';
+const A8 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630194/A8_rtyoty.jpg';
+const A9 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630192/A9_kx00tu.jpg';
+const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pmyr76.jpg';
 
    const dets = [
     { id: 1, name: "French Tip Elegance", image: A1, alt: "French Tip Nail", phrase: "Classic and timeless elegance", price: 28.00, slug:"french-tip-elegance" },
