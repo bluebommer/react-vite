@@ -5,7 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../Context/CartContex.jsx';
 import { ShoppingCart } from 'lucide-react';
 
+
 const NavBar = () => {
+  const L= "https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630176/logo_thjmeo.png"
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('#home');
@@ -99,7 +101,7 @@ const NavBar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <i className="fas fa-hand-sparkles text-3xl text-pink-500 mr-2"></i>
-           <img src="../../asset/logo.png" className="h-[60px]"/>
+           <img src= {L} className="h-[60px]"/>
           </div>
           
           {/* Desktop Navigation */}

@@ -3,22 +3,34 @@ import React, { useState } from 'react';
 import { useCart } from '../Context/CartContex';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const GalleryCard = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const { addToCart } = useCart();
   const navigate = useNavigate();
+  const A1 = "../../asset/All-images/A1.jpeg" ;
+const A2 = "../../asset/All-images/A2.jpeg";
+const A3 = "../../asset/All-images/A3.jpeg";
+const A4 = "../../asset/All-images/A4.jpeg";
+const A5 = "../../asset/All-images/A5.jpeg";
+const A6 = "../../asset/All-images/A6.jpeg";
+const A7 = "../../asset/All-images/A7.jpeg";
+const A8 = "../../asset/All-images/A8.jpeg";
+const A9 = "../../asset/All-images/A9.jpeg";
+const A10 = "../../asset/All-images/A10.jpeg";
 
    const dets = [
-    { id: 1, name: "French Tip Elegance", image: "../../asset/All-images/A1.jpeg", alt: "French Tip Nail", phrase: "Classic and timeless elegance", price: 28.00, slug:"french-tip-elegance" },
-    { id: 2, name: "Glitter Ombre", image: "../../asset/All-images/A2.jpeg", alt: "Glitter Ombre", phrase: "Sparkles that catch the light", price: 35.00, slug:"glitter-ombre" },
-    { id: 3, name: "Marble Effect", image: "../../asset/All-images/A3.jpeg", alt: "Marble Effect", phrase: "Sophisticated stone-inspired design", price: 32.00, slug:"marble-effect" },
-    { id: 4, name: "Pastel Dreams", image: "../../asset/All-images/A4.jpeg", alt: "Pastel Dreams", phrase: "Soft colors for spring vibes", price: 25.00, slug:"pastel-dreams" },
-    { id: 5, name: "Bold Red", image: "../../asset/All-images/A5.jpeg", alt: "Bold Red", phrase: "Classic red for confidence", price: 22.00, slug:"bold-red" },
-    { id: 6, name: "Abstract Art", image: "../../asset/All-images/A6.jpeg", alt: "Abstract Art", phrase: "Unique artistic expression", price: 38.00, slug:"abstract-art" },
-    { id: 7, name: "Geometric Patterns", image: "../../asset/All-images/A7.jpeg", alt: "Geometric Patterns", phrase: "Modern lines and shapes", price: 30.00, slug:"geometric-patterns" },
-    { id: 8, name: "Floral Fantasy", image: "../../asset/All-images/A8.jpeg", alt: "Floral Fantasy", phrase: "Delicate flower designs", price: 42.00, slug:"floral-fantasy" },
-    { id: 9, name: "Metallic Shine", image: "../../asset/All-images/A9.jpeg", alt: "Metallic Shine", phrase: "Luxurious metallic finish", price: 40.00, slug:"metallic-shine" },
-    { id: 10, name: "Sunset Gradient", image: "../../asset/All-images/A10.jpeg", alt: "Sunset Gradient", phrase: "Warm gradient colors", price: 33.00, slug:"sunset-gradient" },
+    { id: 1, name: "French Tip Elegance", image: A1, alt: "French Tip Nail", phrase: "Classic and timeless elegance", price: 28.00, slug:"french-tip-elegance" },
+    { id: 2, name: "Glitter Ombre", image: A2 , alt: "Glitter Ombre", phrase: "Sparkles that catch the light", price: 35.00, slug:"glitter-ombre" },
+    { id: 3, name: "Marble Effect", image: A3, alt: "Marble Effect", phrase: "Sophisticated stone-inspired design", price: 32.00, slug:"marble-effect" },
+    { id: 4, name: "Pastel Dreams", image:A4, alt: "Pastel Dreams", phrase: "Soft colors for spring vibes", price: 25.00, slug:"pastel-dreams" },
+    { id: 5, name: "Bold Red", image: A5, alt: "Bold Red", phrase: "Classic red for confidence", price: 22.00, slug:"bold-red" },
+    { id: 6, name: "Abstract Art", image: A6, alt: "Abstract Art", phrase: "Unique artistic expression", price: 38.00, slug:"abstract-art" },
+    { id: 7, name: "Geometric Patterns", image: A7, alt: "Geometric Patterns", phrase: "Modern lines and shapes", price: 30.00, slug:"geometric-patterns" },
+    { id: 8, name: "Floral Fantasy", image:A8, alt: "Floral Fantasy", phrase: "Delicate flower designs", price: 42.00, slug:"floral-fantasy" },
+    { id: 9, name: "Metallic Shine", image: A9, alt: "Metallic Shine", phrase: "Luxurious metallic finish", price: 40.00, slug:"metallic-shine" },
+    { id: 10, name: "Sunset Gradient", image: A10, alt: "Sunset Gradient", phrase: "Warm gradient colors", price: 33.00, slug:"sunset-gradient" },
   ];
 
   const openModal = (det) => {

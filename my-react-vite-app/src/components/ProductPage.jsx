@@ -4,6 +4,26 @@ import AddToCartButton from './AddToCartButton'; // Adjust path as needed
 
 const ProductPage = () => {
   const { slug } = useParams();
+  const S8 = 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630213/S8_ffylre.jpg';
+const Su4= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630174/Su4_uxfl7y.jpg';
+const S ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630170/16_qqujdd.jpg';
+const S2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630213/S2_ulfoy3.jpg';
+const St1= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630159/St1_urkszb.jpg';
+const C1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630139/C1_xnbyvu.jpg';
+const P1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630166/P1_wn7c8n.jpg';
+const Su1=  'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630176/Su1_z57yfq.jpg';
+const Sp1= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630141/Sp1_nythq5.jpg';
+const S1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630170/1_vnyl8m.jpg';
+const A1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A1_xflh6r.jpg';
+const A2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630178/A2_dnjktz.jpg';
+const A3 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630181/A3_okugnr.jpg';
+const A4 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630204/A4_d7klna.jpg';
+const A5 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630188/A5_uqksg4.jpg';
+const A6 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630184/A6_wrjapw.jpg';
+const A7 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630183/A7_vaeegv.jpg';
+const A8 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630194/A8_rtyoty.jpg';
+const A9 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630192/A9_kx00tu.jpg';
+const A10= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630190/A10_pmyr76.jpg';
 
   // Product database - you can move this to a separate file or fetch from an API
   const products = {
@@ -22,8 +42,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/christmas/S8.jpeg',
-        '../../asset/christmas/S8.jpeg'
+        S8,
+        S8
       ],
       reviews: [
         {
@@ -53,8 +73,8 @@ const ProductPage = () => {
         'Chip-resistant coating'
       ],
       images: [
-       '../../asset/summer/Su4.jpeg',
-        '../../asset/summer/Su4.jpeg'
+       Su4,
+        Su4
       ],
       reviews: [
         {
@@ -84,8 +104,8 @@ const ProductPage = () => {
         'Long-lasting winter formula'
       ],
       images: [
-        '../../asset/artist simple/16.jpeg',
-        '../../asset/artist simple/16.jpeg'
+        S,
+       S
         
       ],
       reviews: [
@@ -116,8 +136,8 @@ const ProductPage = () => {
         'Long-wearing formula'
       ],
       images: [
-        '../../asset/artist simple/16.jpeg',
-        '../../asset/artist simple/16.jpeg'
+       S,
+       S
         
       ],
       reviews: [
@@ -148,8 +168,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/christmas/S2.jpeg',
-        '../../asset/christmas/S2.jpeg'
+        S2,
+        S2
       ],
       reviews: [
         {
@@ -179,8 +199,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/stylish/St1.jpeg',
-        '../../asset/stylish/St1.jpeg'
+        St1,
+        St1
       ],
       reviews: [
         {
@@ -210,8 +230,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/crosses/C1.jpeg',
-        '../../asset/crosses/C1.jpeg'
+        C1,
+        C1
       ],
       reviews: [
         {
@@ -241,8 +261,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/pink/P1.jpeg',
-        '../../asset/pink/P1.jpeg'
+        P1,
+        P1
       ],
       reviews: [
         {
@@ -272,8 +292,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/summer/Su1.jpeg',
-        '../../asset/summer/Su1.jpeg'
+        Su1,
+        Su1
       ],
       reviews: [
         {
@@ -303,8 +323,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/spring/Sp1.jpeg',
-        '../../asset/spring/Sp1.jpeg'
+        Sp1,
+        Sp1
       ],
       reviews: [
         {
@@ -334,8 +354,8 @@ const ProductPage = () => {
         'Available in multiple lengths'
       ],
       images: [
-        '../../asset/artist simple/1.jpeg',
-        '../../asset/artist simple/1.jpeg'
+        S1,
+        S1
       ],
       reviews: [
         {
@@ -365,8 +385,8 @@ const ProductPage = () => {
     "Perfect for any occasion"
   ],
   images: [
-    '../../asset/All-images/A1.jpeg',
-    '../../asset/All-images/A1.jpeg'
+    A1,
+    A1
   ],
   reviews: [
     { name: 'Lola M.', rating: 5, comment: "So elegant and professional!" },
@@ -389,8 +409,8 @@ const ProductPage = () => {
     "Shiny gel topcoat"
   ],
   images: [
-    '../../asset/All-images/A2.jpeg',
-    '../../asset/All-images/A2.jpeg'
+    A2,
+    A2
   ],
   reviews: [
     { name: 'Jessica H.', rating: 5, comment: "Sparkles beautifully!" },
@@ -413,8 +433,8 @@ const ProductPage = () => {
     "Gel durability"
   ],
   images: [
-    '../../asset/All-images/A3.jpeg',
-    '../../asset/All-images/A3.jpeg'
+    A3,
+    A3
   ],
   reviews: [
     { name: 'Bianca E.', rating: 5, comment: "So sophisticated!" },
@@ -437,8 +457,8 @@ const ProductPage = () => {
     "Perfect for everyday wear"
   ],
   images: [
-    '../../asset/All-images/A4.jpeg',
-    '../../asset/All-images/A4.jpeg'
+    A4,
+    A4
   ],
   reviews: [
     { name: 'Elena W.', rating: 5, comment: "Perfect spring vibe." },
@@ -461,8 +481,8 @@ const ProductPage = () => {
     "Durable topcoat"
   ],
   images: [
-    '../../asset/All-images/A5.jpeg',
-    '../../asset/All-images/A5.jpeg'
+   A5,
+    A5
   ],
   reviews: [
     { name: 'Tasha R.', rating: 5, comment: "A timeless red!" },
@@ -485,8 +505,8 @@ const ProductPage = () => {
     "Long-lasting polish"
   ],
   images: [
-    '../../asset/All-images/A6.jpeg',
-    '../../asset/All-images/A6.jpeg'
+    A6,
+    A6
   ],
   reviews: [
     { name: 'Diana F.', rating: 5, comment: "So expressive and stylish!" },
@@ -509,8 +529,8 @@ const ProductPage = () => {
     "Modern fashion-forward look"
   ],
   images: [
-    '../../asset/All-images/A7.jpeg',
-    '../../asset/All-images/A7.jpeg'
+   A7,
+   A7
   ],
   reviews: [
     { name: 'Ify M.', rating: 5, comment: "Loved the crisp design!" },
@@ -533,8 +553,8 @@ const ProductPage = () => {
     "Gentle pastel base"
   ],
   images: [
-    '../../asset/All-images/A8.jpeg',
-    '../../asset/All-images/A8.jpeg'
+    A8,
+    A8
   ],
   reviews: [
     { name: 'Tina Z.', rating: 5, comment: "Super feminine!" },
@@ -557,8 +577,8 @@ const ProductPage = () => {
     "Long-lasting shimmer"
   ],
   images: [
-    '../../asset/All-images/A9.jpeg',
-    '../../asset/All-images/A9.jpeg'
+    A9,
+   A9
   ],
   reviews: [
     { name: 'Kemi F.', rating: 5, comment: "So shiny and sleek!" },
@@ -581,8 +601,8 @@ const ProductPage = () => {
     "Gel-coated finish"
   ],
   images: [
-    '../../asset/All-images/A10.jpeg',
-    '../../asset/All-images/A10.jpeg'
+    A10,
+    A10
   ],
   reviews: [
     { name: 'Nina O.', rating: 5, comment: "So beautiful and warm!" },
@@ -592,7 +612,7 @@ const ProductPage = () => {
 
   };
   
-   const [sizeOption, setSizeOption] = useState('small');
+   const [sizeOption, setSizeOption] = useState('xtrasmall');
   const [customSizes, setCustomSizes] = useState({ thumb: '', index: '', middle: '', ring: '', pinky: '' });
 
   // Get the product based on the slug, or show a default/not found message
@@ -674,9 +694,11 @@ const ProductPage = () => {
               onChange={(e) => setSizeOption(e.target.value)}
               className="border border-gray-300 rounded-md p-2 w-full"
             >
-              <option value="small">Small (Thumb: 1, Index: 5, Middle: 4, Ring: 6, Pinky: 8)</option>
-              <option value="medium">Medium (Thumb: 0, Index: 4, Middle: 3, Ring: 5, Pinky: 7)</option>
-              <option value="large">Large (Thumb: 0, Index: 3, Middle: 2, Ring: 4, Pinky: 6)</option>
+              <option value="xtrasmall">Extra small </option>
+              <option value="small">Small </option>
+              <option value="medium">Medium </option>
+              <option value="large">Large </option>
+              <option value="xtralarge">Extra Large </option>
               <option value="custom">Custom</option>
             </select>
           </div>

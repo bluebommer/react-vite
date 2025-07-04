@@ -17,11 +17,10 @@ const Home = () => {
   
       <div className='font-sans mt-[50px]'>
       
-      {/* <NavBar/> */}
+     
         <Slider/>
          <Services/>
           <TopDeals/>
-          {/* <TopDealsSection/> */}
           <Gallery/>
            <AboutUs/>
             <Testimonials/>
@@ -29,15 +28,7 @@ const Home = () => {
             <Newsletter/>
             <Footer/>
         
-      {/* <Services/>
-      <TopDeals/>
-      <Gallery/>
-      <AboutUs/>
-      <Testimonials/>
-      <ContactUs/>
-      <Newsletter/>
-      <Footer/>
-     */}
+      
    
   
 

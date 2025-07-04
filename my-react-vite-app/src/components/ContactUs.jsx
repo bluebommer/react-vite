@@ -44,19 +44,15 @@ const ContactUs = () => {
                         
                         <div className="space-y-6">
                             <div className="flex items-start">
-                                <div className="bg-white/20 p-3 rounded-full mr-4">
-                                    <i className="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold">Location</h4>
-                                    <p>123 Beauty Street, Suite 45 
-                                      New York, NY 10001</p>
-                                </div>
+                               
+                                
                             </div>
                             
                             <div className="flex items-start">
                                 <div className="bg-white/20 p-3 rounded-full mr-4">
-                                    <i className="fas fa-phone"></i>
+                                    <i className="fas fa-phone">
+                                        <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/phone.png" alt="phone"/>
+                                    </i>
                                 </div>
                                 <div>
                                     <h4 className="font-bold">Phone</h4>
@@ -66,7 +62,9 @@ const ContactUs = () => {
                             
                             <div className="flex items-start">
                                 <div className="bg-white/20 p-3 rounded-full mr-4">
-                                    <i className="fas fa-envelope"></i>
+                                    <i className="fas fa-envelope">
+                                        <img width="25" height="25" src="https://img.icons8.com/color/48/gmail-new.png" alt="gmail-new"/>
+                                    </i>
                                 </div>
                                 <div>
                                     <h4 className="font-bold">Email</h4>
@@ -78,17 +76,20 @@ const ContactUs = () => {
                         <div className="mt-10">
                             <h4 className="font-bold mb-4">Follow Us</h4>
                             <div className="flex space-x-4">
-                                <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
-                                    <i className="fab fa-instagram"></i>
+                                <a href="https://www.instagram.com/nailzby.rose/" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
+                                    <i className="fab fa-instagram">
+                                        <img width="25" height="25" src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new"/>
+                                    </i>
                                 </a>
                                 <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
-                                    <i className="fab fa-facebook-f"></i>
+                                    <i className="fab fa-pinterest-p">
+                                        <img width="25" height="25" src="https://img.icons8.com/color/48/pinterest--v1.png" alt="pinterest--v1"/>
+                                    </i>
                                 </a>
-                                <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
-                                    <i className="fab fa-pinterest-p"></i>
-                                </a>
-                                <a href="#" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
-                                    <i className="fab fa-tiktok"></i>
+                                <a href="https://www.tiktok.com/@nailzby.rose?_t=ZM-8xk4Ax7Ik9W&_r=1" className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition">
+                                    <i className="fab fa-tiktok">
+                                        <img width="25" height="25" src="https://img.icons8.com/ios-filled/50/tiktok--v1.png" alt="tiktok--v1"/>
+                                    </i>
                                 </a>
                             </div>
                         </div>

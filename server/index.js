@@ -4,7 +4,6 @@ const cors = require('cors');
 const Stripe = require('stripe');
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
-const EasyPost = require('@easypost/api');
 
 const app = express();
 const PORT = process.env.PORT || 4242;
@@ -13,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-const easyPost = new EasyPost(process.env.EASYPOST_API_KEY);
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
@@ -27,7 +25,8 @@ const orderSchema = new mongoose.Schema({
       price: Number,
       quantity: Number,
       image: String,
-      size: mongoose.Schema.Types.Mixed
+      size: mongoose.Schema.Types.Mixed,
+      fingerSizes: mongoose.Schema.Types.Mixed
     }
   ],
   total: Number,
@@ -63,107 +62,87 @@ app.post('/create-payment-intent', async (req, res) => {
   }
 });
 
-app.post('/create-shipping-label', async (req, res) => {
-    const {
-    to_name,
-    to_street1,
-    to_city,
-    to_state,
-    to_zip,
-    to_country,
-    to_phone,
-  } = req.body;
-
-  try {
-   const toAddress = await easyPost.Address.create({
-      name: to_name,
-      street1: to_street1,
-      city: to_city,
-      state: to_state,
-      zip: to_zip,
-      country: to_country,
-      phone: to_phone,
-    });
-
-    const fromAddress = await easyPost.Address.create({
-      company: 'Your Store Name',
-      street1: '123 Main St',
-      city: 'Lagos',
-      state: 'LA',
-      zip: '100001',
-      country: 'NG',
-      phone: '08012345678',
-    });
-
-    const parcel = await easyPost.Parcel.create({
-      length: 10,
-      width: 6,
-      height: 4,
-      weight: 16,
-    });
- const shipment = await easyPost.Shipment.create({
-      to_address: toAddress,
-      from_address: fromAddress,
-      parcel: parcel,
-    });
-    await shipment.buy(shipment.rates[0]);
-
-   res.json({
-      tracking_number: shipment.tracking_code,
-      label_url: shipment.postage_label.label_url,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
 app.post('/save-order', async (req, res) => {
   const newOrder = new Order(req.body);
 
   try {
     await newOrder.save();
 
-  const orderText = `
-New Order Received!
+    const itemHtmlList = newOrder.items.map(i => {
+      const sizeInfo = i.size ? `<p><strong>Size:</strong> ${typeof i.size === 'string' ? i.size : JSON.stringify(i.size)}</p>` : '';
+      const fingerInfo = i.fingerSizes ? `<p><strong>Finger Sizes:</strong> ${JSON.stringify(i.fingerSizes)}</p>` : '';
+      return `
+        <li style="margin-bottom: 20px; border: 1px solid #eee; padding: 10px; border-radius: 8px;">
+          <img src="${i.image}" alt="${i.name}" width="100" style="border-radius:8px; margin-bottom:5px; display: block;" />
+          <p style="margin: 5px 0;"><strong>${i.name}</strong> x${i.quantity || 1} - $${i.price}</p>
+          ${sizeInfo}
+          ${fingerInfo}
+        </li>
+      `;
+    }).join('');
 
-Customer: ${newOrder.shipping.name}
-Phone: ${newOrder.shipping.phone}
+    const htmlHeader = `
+      <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+        <img src="https://res.cloudinary.com/dpwmay6fc/image/upload/v1751634787/logo_1_avkoiv.png"  alt="Logo" style="height: 60px; margin-bottom: 20px;" />
+    `;
 
-Items:
-${newOrder.items.map(i => {
-  const sizeInfo = i.size
-    ? `Size: ${typeof i.size === 'string' ? i.size : JSON.stringify(i.size)}`
-    : '';
-  const fingerInfo = i.fingerSizes
-    ? `Finger Sizes: ${JSON.stringify(i.fingerSizes)}`
-    : '';
-  return `- ${i.name} x${i.quantity || 1} ($${i.price}) ${sizeInfo} ${fingerInfo}`;
-}).join('\n')}
+    const htmlFooter = `</div>`;
 
-Total: $${newOrder.total.toFixed(2)}
+    const clientEmailHtml = `
+      ${htmlHeader}
+      <h2 style="color: #d63384;">🛒 New Order Received!</h2>
+      <p><strong>Customer:</strong> ${newOrder.shipping.name}</p>
+      <p><strong>Phone:</strong> ${newOrder.shipping.phone}</p>
+      <h3 style="color: #d63384;">Items:</h3>
+      <ul style="padding-left: 20px;">${itemHtmlList}</ul>
+      <p><strong>Total:</strong> <span style="color: #d63384; font-weight: bold;">$${newOrder.total.toFixed(2)}</span></p>
+      <h3 style="color: #d63384;">Shipping Address:</h3>
+      <p>
+        ${newOrder.shipping.name}<br/>
+        ${newOrder.shipping.street}<br/>
+        ${newOrder.shipping.city}, ${newOrder.shipping.state} ${newOrder.shipping.zip}<br/>
+        ${newOrder.shipping.country}
+      </p>
+      ${htmlFooter}
+    `;
 
-Shipping Address:
-${newOrder.shipping.street}
-${newOrder.shipping.city}, ${newOrder.shipping.state}, ${newOrder.shipping.zip}
-${newOrder.shipping.country}
-`;
+    const customerEmailHtml = `
+      ${htmlHeader}
+      <h2 style="color: #d63384;">🎉 Order Confirmation</h2>
+      <p>Hi ${newOrder.shipping.name},</p>
+      <p>Thank you for your order! Here's a summary of what you purchased:</p>
+      <h3 style="color: #d63384;">Items:</h3>
+      <ul style="padding-left: 20px;">${itemHtmlList}</ul>
+      <p><strong>Total:</strong> <span style="color: #d63384; font-weight: bold;">$${newOrder.total.toFixed(2)}</span></p>
+      <p>Your items will be shipped to:</p>
+      <p>
+        ${newOrder.shipping.name}<br/>
+        ${newOrder.shipping.street}<br/>
+        ${newOrder.shipping.city}, ${newOrder.shipping.state} ${newOrder.shipping.zip}<br/>
+        ${newOrder.shipping.country}
+      </p>
+      <p>If you have any questions, reply to this email.</p>
+      <p>❤️ Thank you for shopping with us!</p>
+      ${htmlFooter}
+    `;
 
-
+    // Send to client
     await transporter.sendMail({
       from: `"Order Notification" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
       subject: `🛒 New Order from ${newOrder.shipping.name}`,
-      text: orderText,
-    },(err, info) => {
-      if (err) {
-        console.error('❌ Email failed:', err);
-      } else {
-        console.log('✅ Email sent:', info.response);
-      }
+      html: clientEmailHtml,
     });
 
-    res.status(200).json({ message: 'Order saved and email sent!' });
+    // Send to customer
+    await transporter.sendMail({
+      from: `"Your Shop" <${process.env.EMAIL_USER}>`,
+      to: newOrder.shipping.email,
+      subject: `✅ Your Order Confirmation`,
+      html: customerEmailHtml,
+    });
+
+    res.status(200).json({ message: 'Order saved and emails sent!' });
   } catch (error) {
     console.error('Failed to save order or send email:', error);
     res.status(500).json({ error: 'Failed to save order or send email' });

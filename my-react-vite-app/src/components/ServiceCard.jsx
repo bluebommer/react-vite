@@ -1,14 +1,23 @@
 // import React from 'react'
 import React from 'react'
 import { Link } from 'react-router-dom';
+
+
 const ServiceCard = () => {
+  const S2 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630213/S2_ulfoy3.jpg'; 
+const St1= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630159/St1_urkszb.jpg'; 
+const C1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630139/C1_xnbyvu.jpg';
+const P1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630166/P1_wn7c8n.jpg';
+const Su1=  'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630176/Su1_z57yfq.jpg';
+const Sp1= 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630141/Sp1_nythq5.jpg';
+const S1 ='https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630170/1_vnyl8m.jpg';
   const services = [
   {
     name: "Season Collection",
     slug: "season-collection",
     description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
     price: 40,
-    img: "../../asset/christmas/S2.jpeg",
+    img: S2,
     i:"fas fa-tooth text-6xl text-purple-500",
     collectionName: "season" // This should match your folder name
   },
@@ -17,7 +26,7 @@ const ServiceCard = () => {
     slug: "stylish",
     description: "Relaxing foot treatment with nail shaping, callus removal, foot massage, and polish application.",
     price: 35,
-    img: "../../asset/stylish/St1.jpeg",
+    img: St1,
     i:"fas fa-tooth text-6xl text-purple-500",
     collectionName: "minimalist" // This should match your folder name
   },
@@ -26,7 +35,7 @@ const ServiceCard = () => {
     slug: "cross-designs",
     description: "Long-lasting nail extensions with a natural look using high-quality gel products.", 
     price: 60,
-    img: "../../asset/crosses/C1.jpeg",
+    img: C1,
     i:"fas fa-gem text-6xl text-blue-500",
     collectionName: "valentines" // This should match your folder name
   },
@@ -35,7 +44,7 @@ const ServiceCard = () => {
     slug: "pink-designs",
     description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
     price: 50,
-    img: "../../asset/pink/P1.jpeg",
+    img: P1,
     i:"fas fa-magic text-6xl text-yellow-500",
     collectionName: "valentines" // This should match your folder name
   },
@@ -44,7 +53,7 @@ const ServiceCard = () => {
     slug: "summer",
     description: "Custom nail designs from simple patterns to intricate artwork to express your style.", 
     price: 40,
-    img: "../../asset/summer/Su1.jpeg",
+    img: Su1,
     i:"fas fa-leaf text-6xl text-green-500",
     collectionName: "valentines" // This should match your folder name
   },
@@ -53,7 +62,7 @@ const ServiceCard = () => {
     slug: "spring",
     description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
     price: 75,
-    img: "../../asset/spring/Sp1.jpeg",
+    img: Sp1,
     i:"fas fa-heart text-6xl text-red-500",
     collectionName: "valentines" // This should match your folder name
   },
@@ -62,7 +71,7 @@ const ServiceCard = () => {
     slug: "minimal",
     description: "Complete pampering experience combining manicure, pedicure, and hand/foot treatments.", 
     price: 75,
-    img: "../../asset/artist simple/1.jpeg",
+    img: S1,
     i:"fas fa-heart text-6xl text-red-500",
     collectionName: "valentines" // This should match your folder name
   }

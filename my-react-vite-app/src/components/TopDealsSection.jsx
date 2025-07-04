@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const TopDealsSection = () => {
+  const S8  = 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630213/S8_ffylre.jpg';
+const Su4 = 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630174/Su4_uxfl7y.jpg';
+const S = 'https://res.cloudinary.com/dpwmay6fc/image/upload/v1751630170/16_qqujdd.jpg';
   const topDeals = [
     {
       name: "Valentine's Special",
@@ -12,7 +15,7 @@ const TopDealsSection = () => {
       background: "bg-red-500",
       grad1: "from-pink-400",
       grad2: "to-red-400",
-      img: "../../asset/christmas/S8.jpeg"
+      img: S8
     },
     {
       name: "Summer Glow",
@@ -23,7 +26,7 @@ const TopDealsSection = () => {
       background: "bg-yellow-500",
       grad1: "from-yellow-400",
       grad2: "to-orange-400",
-      img: "../../asset/summer/Su4.jpeg"
+      img: Su4
     },
     {
       name: "Winter Wonderland",
@@ -34,7 +37,7 @@ const TopDealsSection = () => {
       background: "bg-blue-500",
       grad1: "from-blue-400",
       grad2: "to-cyan-400",
-      img: "../../asset/artist simple/16.jpeg"
+      img: S
     },
     {
       name: "Classic Red",
@@ -45,7 +48,7 @@ const TopDealsSection = () => {
       background: "bg-red-600",
       grad1: "from-red-500",
       grad2: "to-pink-500",
-      img: "../../asset/artist simple/16.jpeg"
+      img: S
     }
   ];
 
